@@ -1,0 +1,28 @@
+{
+  "name": "directiv-data-hyper-bind",
+  "version": "0.1.0",
+  "description": "bind the contents of a node with hyper-store",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/directiv/data-hyper-bind.git"
+  },
+  "keywords": [
+    "directiv",
+    "hyper"
+  ],
+  "author": "Cameron Bytheway <bytheway.cameron@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/directiv/data-hyper-bind/issues"
+  },
+  "homepage": "https://github.com/directiv/data-hyper-bind",
+  "devDependencies": {
+    "mocha": "^1.21.4",
+    "directiv-test-helpers": "^0.1.0",
+    "directiv-test-hyper-helpers": "^0.1.0"
+  }
+}
