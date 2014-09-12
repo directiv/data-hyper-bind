@@ -1,7 +1,8 @@
 module.exports = {
   tag: 'div',
-  props: {},
-  children: 'Mike',
-  pending: false,
-  scope: {}
+  children: ['Mike'],
+  state: {
+    name: 'Mike'
+  },
+  props: {}
 };

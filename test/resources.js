@@ -1,5 +1,5 @@
 module.exports = {
-  '.': {
+  '/': {
     account: {
       href: '/users/123'
     }

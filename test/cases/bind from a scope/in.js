@@ -3,7 +3,7 @@ module.exports = {
   props: {
     'data-hyper-bind': 'account.name'
   },
-  scope: {
+  state: {
     account: {
       href: '/users/123'
     }

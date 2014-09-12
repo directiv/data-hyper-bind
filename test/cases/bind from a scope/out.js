@@ -1,9 +1,11 @@
 module.exports = {
   tag: 'div',
-  scope: {
+  state: {
     account: {
       href: '/users/123'
-    }
+    },
+    name: 'Mike'
   },
-  children: 'Mike'
+  children: ['Mike'],
+  props: {}
 };

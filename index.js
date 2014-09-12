@@ -2,7 +2,7 @@
 
 exports.requires = ['hyper-store'];
 
-exports.attributes = [
+exports.exposes = [
   'data-hyper-bind',
   'data-bind'
 ];
@@ -10,30 +10,17 @@ exports.attributes = [
 exports.compile = function(input, props) {
   var path = input.split('.');
   return {
-    path: path,
+    path: input,
     target: path[path.length - 1]
   };
 };
 
 exports.state = function(config, state) {
-  var res = this('hyper-store').get(config.path, state());
-  return state(config.path, {$set: res});
-};
-
-exports.pending = function(config, state) {
-  return !state(config.target).isComplete;
-};
-
-exports.scope = function(config, state, scope) {
-  var target = config.target;
-  var res = state(target);
-  return scope(target, {$set: res.value});
-}
-
-exports.props = function(config, state, props) {
-  return props;
+  var res = this('hyper-store').get(config.path, state.get());
+  if (!res.completed) return false;
+  return state.set(config.target, res.value);
 };
 
 exports.children = function(config, state, scope, children) {
-  return state(config.target).value || '';
-}
+  return state.get(config.target) || '';
+};
