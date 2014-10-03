@@ -1,26 +1,39 @@
-/** @directiv data-stateless */
+/**
+ * Module dependencies
+ */
 
-exports.requires = ['hyper-store'];
+hyperBind.requires = ['store-hyper'];
 
-exports.exposes = [
-  'data-hyper-bind',
-  'data-bind'
-];
+/**
+ * Expose the 'hyper-bind' directive
+ */
 
-exports.compile = function(input, props) {
-  var path = input.split('.');
-  return {
-    path: input,
-    target: path[path.length - 1]
+module.exports = hyperBind;
+
+/**
+ * Initialize the 'hyper-bind' directive
+ *
+ * @param {StoreHyper} store
+ */
+
+function hyperBind(store) {
+  this.compile = function(input) {
+    var path = input.split('.');
+    return {
+      path: input,
+      target: path[path.length - 1]
+    };
   };
-};
 
-exports.state = function(config, state) {
-  var res = this('hyper-store').get(config.path, state.get());
-  if (!res.completed) return false;
-  return state.set(config.target, res.value);
-};
+  this.state = function(config, state) {
+    var res = store.get(config.path, state);
+    if (!res.completed) return false;
+    return state.set(config.target, res.value);
+  };
 
-exports.children = function(config, state, scope, children) {
-  return state.get(config.target) || '';
-};
+  this.children = function(config, state, children) {
+    var value = state.get(config.target);
+    if (typeof value === 'undefined') return '';
+    return value;
+  };
+}
